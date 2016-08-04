@@ -1,0 +1,29 @@
+<div class="card-container row">
+  <md-card class="col-md-3  kpi-cards">
+    <md-card-title>Lift</md-card-title>
+    <md-card-content class="secondary" *ngIf="liftPercentage">
+      {{liftPercentage}}%
+    </md-card-content>
+    <md-card-content class="secondary" *ngIf="!liftPercentage">
+      Loading...
+    </md-card-content>
+  </md-card>
+  <md-card class="col-md-3 kpi-cards">
+    <md-card-title>Awareness</md-card-title>
+    <md-card-content class="secondary" *ngIf="liftPercentage">
+      {{liftPercentage}}%
+    </md-card-content>
+    <md-card-content class="secondary" *ngIf="!liftPercentage">
+      Loading...
+    </md-card-content>
+  </md-card>
+  <md-card class="col-md-3 kpi-cards">
+    <md-card-title>Reach</md-card-title>
+    <md-card-content class="secondary" *ngIf="liftPercentage">
+      {{liftPercentage}}%
+    </md-card-content>
+    <md-card-content class="secondary" *ngIf="!liftPercentage">
+      Loading...
+    </md-card-content>
+  </md-card>
+</div>

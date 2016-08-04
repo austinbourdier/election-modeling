@@ -1,0 +1,23 @@
+.kpi-cards {
+  box-sizing: border-box;
+  margin: 2.5em;
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 2em;
+}
+
+md-card-title {
+  text-align: center;
+  font-size: 1.6em;
+}
+
+md-card-content {
+  text-align: center;
+  font-size: 2em;
+}
+
+
+

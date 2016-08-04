@@ -1,0 +1,20 @@
+.center-block {
+  display: block;
+  margin-top: 10em;
+  margin-left: 25em;
+  margin-right: auto;
+}
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-borderless thead th {
+    border: none;
+}
+
+.campaign-report-table {
+  float: none;
+}

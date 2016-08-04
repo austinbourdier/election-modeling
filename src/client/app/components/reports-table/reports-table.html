@@ -1,0 +1,54 @@
+<div (click)="$event.preventDefault()">
+  <div class="btn-group" dropdown keyboardNav="true">
+    <button id="simple-btn-keyboard-nav" type="button" class="btn btn-secondary" dropdownToggle>
+      {{selectedReportTitle}} <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+      <li role="menuitem"*ngFor="let report of reports" (click)="onSelect(report)">
+        <a class="dropdown-item">{{report?.title}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div>
+  <table class="table table-hover table-borderless" #table [tableData]="reportData" dataTable>
+    <thead>
+        <tr>
+          <th *ngFor="let header of reportHeaders" [ngClass]="[header.width, 'campaign-report-table']">
+            <sorter *ngIf="header.sort" [datatable]="dataTable"[sortColumn]="header.attribute">{{header.title}}</sorter>
+            <span *ngIf="!header.sort">{{header.title}}</span>
+          </th>
+        </tr>
+      </thead>
+    <tbody *ngFor="let item of reportData | paginate: { itemsPerPage: limit, currentPage: p, totalItems: total }">
+      <tr>
+        <td *ngFor="let header of reportHeaders" [ngClass]="[header.width, 'campaign-report-table']">
+          <span [ngSwitch]="header.attribute">
+
+            <template [ngSwitchCase]="'url'">
+              <a href="{{item.url}}">{{item.url}}</a>
+              <br/> {{item.title}}
+            </template>
+
+            <template [ngSwitchCase]="'name'">
+              {{item.name}}<br/> {{item.sid}}
+            </template>
+
+            <template [ngSwitchCase]="'lift_percentage'">
+              {{item.lift_percentage ? item.lift_percentage + "%" : "N/A"}}
+            </template>
+
+            <template ngSwitchDefault>
+              {{item[header.attribute]}}
+            </template>
+
+          </span>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="getReport($event)"></pagination-controls>
+  <md-progress-circle *ngIf="!reportData.length" class="center-block" mode="indeterminate"></md-progress-circle>
+</div>
+

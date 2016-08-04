@@ -1,0 +1,7 @@
+.git
+app
+coverage
+dist
+node_modules
+pacts
+tmp

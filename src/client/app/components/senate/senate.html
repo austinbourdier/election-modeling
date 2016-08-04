@@ -1,0 +1,12 @@
+<h2>Modules for {{ (account$ | async)?.name }}</h2>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="flex-rows module-card-wrapper">
+
+    <div class="module-card" *ngFor="let module of modules$ | async">
+      <module-list-item [module]="module"></module-list-item>
+    </div>
+    
+  </div>
+</div>

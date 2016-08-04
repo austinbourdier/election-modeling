@@ -1,0 +1,38 @@
+<h2>Campaigns</h2>
+
+<search-box (change)="searchCampaigns()" (update)="term = $event"></search-box>
+<label><input type="checkbox" id="cbox1" (change)="onActiveFlagChange()"> Active Only</label>
+
+
+<div *ngIf="campaigns?.total > 0">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Baseline Start</th>
+      <th>Baseline End</th>
+      <th>In Flight</th>
+      <th>Active</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let campaign of campaigns?.data | paginate: { itemsPerPage: limit, currentPage: p, totalItems: total }">
+    <tr>
+      <td> <a [routerLink]="['/accounts', accountId, '/campaigns', campaign.id]">{{campaign.name}}</a> </td>
+      <td> {{campaign.start_date}} </td>
+      <td> {{campaign.end_date}} </td>
+      <td> {{campaign.baseline_start_date}} </td>
+      <td> {{campaign.baseline_end_date}} </td>
+      <td [ngClass]="{'in-flight-true': campaign.in_flight, 'in-flight-false': !campaign.in_flight, 'text-muted': !campaign.in_flight}">
+        {{ campaign.in_flight ? "In Flight" : "Not in Flight"}}
+      </td>
+      <td [ngClass]="{'active-campaign': campaign.active, 'inactive-campaign': !campaign.active}"> {{campaign.active ? "Active" : "Inactive"}} </td>
+    </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="getCampaigns($event)"></pagination-controls>
+</div>
+<div *ngIf="!hasCampaigns">
+  <h4>Sorry, no campaigns matched your search.</h4>
+</div>
